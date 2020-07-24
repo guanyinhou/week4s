@@ -111,6 +111,15 @@
   background-color: #fff;
 }
 
+* #app .container .pagination .page-link {
+  color: #b074a9;
+}
+
+* #app .container .pagination .active .page-link {
+  border-color: #b074a9;
+  background-color: #b074a9;
+}
+
 * .text-center {
   text-align: center;
 }
@@ -136,6 +145,7 @@
 }
 
 * .overflow {
+  z-index: 100;
   background-color: rgba(40, 40, 40, 0.5);
   position: fixed;
   top: 0;

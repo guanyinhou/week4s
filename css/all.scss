@@ -85,6 +85,17 @@
                     background-color: #fff;
                 }
             }
+            .pagination{
+                .page-link{
+                    color: #b074a9;
+                }
+                .active{
+                    .page-link{
+                        border-color: #b074a9;
+                        background-color: #b074a9;
+                    }
+                }
+            }
         }
     }
     .text-center{
@@ -106,6 +117,7 @@
         }
     }
     .overflow {
+        z-index: 100;
         background-color: rgba(40, 40, 40, .5);
         position: fixed;
         top: 0;
