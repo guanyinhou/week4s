@@ -27,7 +27,7 @@ new Vue({
         signout(){
             document.cookie = `tokenName=; expires=; path=/`;
             window.location="week4_login.html";
-        }
+        },
         openModal(status, prod) {
             switch (status) {
                 case 'new':
