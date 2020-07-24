@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap-grid.min.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3.3.2/dist/vue-loading.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3.3.2/dist/vue-loading.css"/>
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+
+<body>
+    <div id="app" :class="{'openNewPanel':openNewPanel,'openEditPanel':openEditPanel,'openConfirm':openConfirm}">
+        <loading :active.sync="isLoading"></loading>
+        <div class="overflow" @click="closeModal"></div>
+        <div class="container">
+            <div class="buttons">
+                <div class="float-right">
+                    <button class="btn" type="button" @click="openModal('new')">新增</button>
+                </div>
+            </div>
+            <hr>
+            <div class="list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>分類</th>
+                            <th>產品名稱</th>
+                            <th>原價</th>
+                            <th>售價</th>
+                            <th>是否啟用</th>
+                            <th>編輯</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="prod in prods" :key="prod.id">
+                            <td>{{prod.category}}</td>
+                            <td>{{prod.title}}</td>
+                            <td>{{prod.origin_price}}</td>
+                            <td>{{prod.price}}</td>
+                            <td>
+                                <span class="activated" v-if="prod.enabled">啟用</span>
+                                <span class="notActivated" v-else>未啟用</span>
+                            </td>
+                            <td>
+                                <div class="btn-zone">
+                                    <button class="btn btn-edit" type="button"
+                                        @click="openModal('edit',prod)" :disabled="loadingBtn===prod.id" >
+                                            <!-- <span class="spinner-grow spinner-grrow-sm" role="status" aria-hidden="true" v-if="loadingBtn===prod.id"></span> -->
+                                            編輯
+                                    </button>
+                                    <button class="btn btn-remove" type="button"
+                                        @click="openModal('delete',prod)" :disabled="loadingBtn===prod.id">刪除</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table><br><br><hr>
+                <pagination :pages="pagination" @update="getProds"></pagination>
+            </div>
+
+            <modal :api="api" :is-new="isNew" :temp-data="tempData" @update="getProds" :close-modal="closeModal"></modal>
+
+            <div class="modal confirm">
+                <div class="modal-header">
+                    <span class="modal-title">刪除產品</span>
+                    <span class="close float-right" @click="closeModal">X</span>
+                </div>
+                <div class="modal-body">
+                    <p>是否刪除{{tempData.title}} (刪除後將無法恢復)？</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" id="cancel" @click="closeModal">取消</button>
+                    <button class="btn" id="confirm" @click="removeData">確認刪除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
+    <script src="./js/products.js" type="module"></script>
+    
+</body>
+
+</html>

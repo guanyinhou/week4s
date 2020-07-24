@@ -1,0 +1,130 @@
+* {
+    font-family: microsoft jhenghei;
+    #app {
+        margin-top: 100px;
+        position: relative;
+        &.openConfirm .overflow,&.openNewPanel .overflow,&.openEditPanel .overflow {
+            display: block;
+        }
+        &.openConfirm .modal.confirm,&.openNewPanel .modal.panel,&.openEditPanel .modal.panel {
+            top: -2rem;
+            margin-bottom: 2rem;
+            position: absolute;
+            display: block;
+            overflow: visible;
+            height: auto;
+        }
+        .container {
+            max-width: 960px;
+            margin: auto;
+            overflow-y: auto;
+            .list table {
+                width: 100%;
+                td {
+                    text-align: center;
+                }
+                th,td {
+                    padding: 5px 10px;
+                }
+                thead {
+                    background-color: #eee;
+                }
+            }
+            .modal {
+                box-shadow: 5px 5px 10px #777;
+                border-radius: 5px;
+                position: fixed;
+                left: 50%;
+                transform: translateX(-50%);
+                top: -7000px;
+                transition: all .6s;
+                &.confirm {
+                    width: 30%;
+                }
+                &.panel {
+                    width: 60%;
+                }
+                .modal-header {
+                    padding: 20px;
+                    background-color: #b074a9;
+                    color: #fff;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                    .close {
+                        cursor: pointer;
+                    }
+                }
+                .modal-body {
+                    padding: 20px;
+                    background-color: #fff;
+                    label {
+                        display: block;
+                        margin-bottom: 5px;
+                    }
+                    .ckbox label {
+                        display: inline-block;
+                    }
+                    textarea,input:not([type="checkbox"]) {
+                        width: 100%;
+                        height: 36px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        padding: 5px 10px;
+                    }
+                    textarea {
+                        height: auto;
+                        min-height: 72px;
+                    }
+                }
+                .modal-footer {
+                    border-top: 1px solid #ddd;
+                    padding: 20px;
+                    text-align: right;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+    .text-center{
+        text-align: center;
+    }
+    .float-right {
+        float: right;
+    }
+    .buttons {
+        overflow: hidden;
+    }
+    .activated {
+        color: green;
+    }
+    .form-team {
+        margin-bottom: 15px;
+        img {
+            width: 100%;
+        }
+    }
+    .overflow {
+        background-color: rgba(40, 40, 40, .5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /* transition: opacity .15s linear; */
+        display: none;
+    }
+    .btn {
+        background-color: #b074a9;
+        border: 1px solid #b074a9;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 4px;
+        transition: all .4s;
+        &:hover {
+            background-color: #fff;
+            color: #b074a9;
+        }
+    }
+}

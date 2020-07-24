@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3.3.2/dist/vue-loading.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3.3.2/dist/vue-loading.css"/>
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+<body>
+    <div id="app">
+        <loading :active.sync="isLoading"></loading>
+        <div class="container">
+            <div class="text-center">
+                <form class="form-signin" @submit.prevent.enter="signin">
+                    <h2>請先登入</h2><hr>
+                    <input type="email" placeholder="E-mail" v-model="user.email" required><br><br>
+                    <input type="password" placeholder="Password" v-model="user.password" required><br><br><hr>
+                    <div class="btn-zone">
+                        <button class="btn" type="submit">登入</button><br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
+    <script src="./js/login.js"></script>
+</body>
+</html>
